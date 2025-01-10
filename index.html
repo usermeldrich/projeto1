@@ -7,43 +7,60 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="form-container">
-    <h2>Login</h2>
-    <form id="loginForm">
-        <input type="email" id="loginEmail" placeholder="Email" required>
-        <input type="password" id="loginPassword" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
-    </form>
-    <p>Não tem uma conta? <a href="register.html">Cadastre-se aqui</a></p>
-    <div class="error" id="error-message"></div>
-</div>
-<script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+    <div class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm" aria-labelledby="form-title">
+            <!-- Campo de e-mail -->
+            <div class="input-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" name="email" placeholder="Digite seu e-mail" required aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text">Seu e-mail será usado para acessar sua conta.</small>
+            </div>
 
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        const errorMessage = document.getElementById('error-message');
+            <!-- Campo de senha -->
+            <div class="input-group">
+                <label for="loginPassword">Senha</label>
+                <input type="password" id="loginPassword" name="password" placeholder="Digite sua senha" required>
+            </div>
 
-        // Verificar se o usuário existe no localStorage
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(user => user.email === email);
+            <!-- Botão de login -->
+            <button type="submit">Entrar</button>
+        </form>
 
-        if (!user) {
-            errorMessage.textContent = "Email não encontrado!";
-            return;
-        }
+        <!-- Link de cadastro -->
+        <p>Não tem uma conta? <a href="register.html">Cadastre-se aqui</a></p>
 
-        // Verificar se a senha está correta
-        if (user.password !== password) {
-            errorMessage.textContent = "Senha incorreta!";
-            return;
-        }
+        <!-- Mensagem de erro -->
+        <div class="error" id="error-message" aria-live="assertive"></div>
+    </div>
 
-        // Login bem-sucedido
-        alert('Login bem-sucedido!');
-        window.location.href = 'index.html'; // Redireciona para a página inicial após o login
-    });
-</script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Verificar se o usuário existe no localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email);
+
+            if (!user) {
+                errorMessage.textContent = "Email não encontrado!";
+                return;
+            }
+
+            // Verificar se a senha está correta
+            if (user.password !== password) {
+                errorMessage.textContent = "Senha incorreta!";
+                return;
+            }
+
+            // Login bem-sucedido
+            alert('Login bem-sucedido!');
+            window.location.href = 'index.html'; // Redireciona para a página inicial após o login
+        });
+    </script>
 </body>
 </html>
