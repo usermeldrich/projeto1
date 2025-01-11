@@ -6,6 +6,7 @@ body {
   .container {
     max-width: 400px;
     margin: auto;
+    text-align: center; /* Alinha o conteúdo ao centro */
   }
   
   input {
@@ -27,5 +28,27 @@ body {
   
   button:hover {
     background-color: #0056b3;
+  }
+  
+  /* Estilo para o botão de cadastro */
+  .register-btn {
+    padding: 12px 25px;
+    background-color: #28a745; /* Cor chamativa (verde) */
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px; /* Espaço entre o botão e o resto do conteúdo */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .register-btn:hover {
+    background-color: #218838; /* Cor mais escura para o hover */
+    transform: scale(1.05);
+  }
+  
+  .register-btn:active {
+    background-color: #1e7e34; /* Cor mais escura quando clicado */
+    transform: scale(1);
   }
   

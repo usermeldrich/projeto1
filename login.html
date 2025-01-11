@@ -15,6 +15,9 @@
     <input type="email" id="login-email" placeholder="Email">
     <input type="password" id="login-password" placeholder="Senha">
     <button onclick="login()">Entrar</button>
+
+    <!-- Novo botão para redirecionar para a página de registro -->
+    <p>Não tem uma conta? <button id="register-btn" class="register-btn">Cadastre-se aqui</button></p>
   </div>
 
   <script>
@@ -31,6 +34,11 @@
           alert('Erro ao fazer login: ' + error.message);
         });
     }
+
+    // Redireciona para a página de registro
+    document.getElementById('register-btn').addEventListener('click', function() {
+      window.location.href = 'register.html'; // Substitua com o nome da sua página de registro
+    });
   </script>
 </body>
 </html>
