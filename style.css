@@ -8,41 +8,32 @@ body {
     margin: 0;
 }
 
-.form-container {
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    width: 300px;
-}
-
-h2 {
+.main-container {
     text-align: center;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
+.login-btn {
+    padding: 15px 30px;
+    background-color: #28a745; /* Cor chamativa (verde) */
     color: white;
+    font-size: 1.2rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+.login-btn:hover {
+    background-color: #218838; /* Cor mais escura para o hover */
+    transform: scale(1.05); /* Aumenta o tamanho do botão levemente */
 }
 
-.error {
-    color: red;
-    font-size: 12px;
+.login-btn:active {
+    background-color: #1e7e34; /* Cor mais escura quando clicado */
+    transform: scale(1);
 }
