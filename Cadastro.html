@@ -15,6 +15,10 @@
     <input type="email" id="signup-email" placeholder="Email">
     <input type="password" id="signup-password" placeholder="Senha">
     <button onclick="signup()">Cadastrar</button>
+    <p id="error-message" style="color:red;"></p> <!-- Mensagem de erro -->
+
+    <!-- Novo botão para redirecionar para o login -->
+    <p>Já tem uma conta? <button id="login-btn" class="login-btn">Faça login aqui</button></p>
   </div>
 
   <script>
@@ -22,15 +26,32 @@
     function signup() {
       const email = document.getElementById('signup-email').value;
       const password = document.getElementById('signup-password').value;
+      const errorMessage = document.getElementById('error-message'); // Mensagem de erro
 
+      // Limpar a mensagem de erro antes de tentar o cadastro
+      errorMessage.textContent = '';
+
+      // Tentar criar o usuário com email e senha
       auth.createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
+          // Cadastro bem-sucedido
           alert('Usuário cadastrado com sucesso!');
+          window.location.href = 'login.html'; // Redireciona para a página de login
         })
         .catch(error => {
-          alert('Erro ao cadastrar: ' + error.message);
+          // Erro ao cadastrar (exemplo: e-mail já em uso)
+          if (error.code === 'auth/email-already-in-use') {
+            errorMessage.textContent = 'Este e-mail já está cadastrado!';
+          } else {
+            errorMessage.textContent = 'Erro ao cadastrar: ' + error.message;
+          }
         });
     }
+
+    // Redirecionar para a página de login
+    document.getElementById('login-btn').addEventListener('click', function() {
+      window.location.href = 'login.html'; // Redireciona para a página de login
+    });
   </script>
 </body>
 </html>

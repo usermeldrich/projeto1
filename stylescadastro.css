@@ -52,3 +52,32 @@ body {
     margin-top: 15px;
   }
   
+  /* Estilo para o botão de redirecionamento para o login */
+  .login-btn {
+    padding: 12px 25px;
+    background-color: #28a745; /* Cor chamativa (verde) */
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background-color: #218838; /* Cor mais escura para o hover */
+    transform: scale(1.05);
+  }
+  
+  .login-btn:active {
+    background-color: #1e7e34; /* Cor mais escura quando clicado */
+    transform: scale(1);
+  }
+  
+  /* Estilo para a mensagem de erro */
+  #error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
