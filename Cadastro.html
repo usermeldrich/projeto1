@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="firebaseConfig.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastro</h2>
+    <input type="email" id="signup-email" placeholder="Email">
+    <input type="password" id="signup-password" placeholder="Senha">
+    <button onclick="signup()">Cadastrar</button>
+  </div>
+
+  <script>
+    // Função de cadastro
+    function signup() {
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          alert('Usuário cadastrado com sucesso!');
+        })
+        .catch(error => {
+          alert('Erro ao cadastrar: ' + error.message);
+        });
+    }
+  </script>
+</body>
+</html>
