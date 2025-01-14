@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro</title>
-  <link rel="stylesheet" href="css/stylescadastro.css">
+  <link rel="stylesheet" href="stylescadastro.css">
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
   <script src="firebaseConfig.js" defer></script>
 </head>
 <body>
@@ -26,29 +27,34 @@
     function signup(event) {
       // Previne o envio tradicional do formulário
       event.preventDefault();
-  
+
       const email = document.getElementById('signup-email').value;
       const password = document.getElementById('signup-password').value;
       const errorMessage = document.getElementById('error-message'); // Mensagem de erro
-  
+
       // Limpar a mensagem de erro antes de tentar o cadastro
       errorMessage.textContent = '';
-  
+
       // Tentar criar o usuário com email e senha
       auth.createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
           // Cadastro bem-sucedido
           const user = userCredential.user;
           const userId = user.uid;  // ID único do usuário
-  
+
           // Agora, adicione o usuário ao Realtime Database
           firebase.database().ref('usuarios/' + userId).set({
             email: email,
             senha: password
+          })
+          .then(() => {
+            alert('Usuário cadastrado com sucesso!');
+            window.location.href = 'login.html'; // Redireciona para a página de login
+          })
+          .catch(error => {
+            errorMessage.textContent = 'Erro ao salvar dados no banco: ' + error.message;
           });
-  
-          alert('Usuário cadastrado com sucesso!');
-          window.location.href = 'login.html'; // Redireciona para a página de login
+
         })
         .catch(error => {
           // Erro ao cadastrar (exemplo: e-mail já em uso)
@@ -59,5 +65,11 @@
           }
         });
     }
+
+    // Redirecionar para a página de login
+    document.getElementById('login-btn').addEventListener('click', function() {
+      window.location.href = 'login.html'; // Redireciona para a página de login
+    });
   </script>
-  
+</body>
+</html>
