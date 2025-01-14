@@ -1,73 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro</title>
-  <link rel="stylesheet" href="css/stylescadastro.css">
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-  <script src="firebaseConfig.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Cadastro</h2>
-    <input type="email" id="signup-email" placeholder="Email">
-    <input type="password" id="signup-password" placeholder="Senha">
-    <button onclick="signup(event)">Cadastrar</button>
-    <p id="error-message" style="color:red;"></p> <!-- Mensagem de erro -->
+    <div class="main-container">
+        <h1>Bem-vindo à Página Inicial</h1>
+        <button id="loginButton" class="login-btn">Fazer Login</button>
+    </div>
 
-    <!-- Novo botão para redirecionar para o login -->
-    <p>Já tem uma conta? <button id="login-btn" class="login-btn">Faça login aqui</button></p>
-  </div>
-
-  <script>
-    // Função de cadastro
-    function signup(event) {
-      // Previne o envio tradicional do formulário
-      event.preventDefault();
-
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
-      const errorMessage = document.getElementById('error-message'); // Mensagem de erro
-
-      // Limpar a mensagem de erro antes de tentar o cadastro
-      errorMessage.textContent = '';
-
-      // Tentar criar o usuário com email e senha
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(userCredential => {
-          // Cadastro bem-sucedido
-          const user = userCredential.user;
-
-          // Salvar informações adicionais no Firestore (se necessário)
-          db.collection('users').doc(user.uid).set({
-            email: email,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-          })
-          .then(() => {
-            alert('Usuário cadastrado com sucesso!');
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function() {
             window.location.href = 'login.html'; // Redireciona para a página de login
-          })
-          .catch(error => {
-            errorMessage.textContent = 'Erro ao salvar no banco de dados: ' + error.message;
-          });
-        })
-        .catch(error => {
-          // Erro ao cadastrar (exemplo: e-mail já em uso)
-          if (error.code === 'auth/email-already-in-use') {
-            errorMessage.textContent = 'Este e-mail já está cadastrado!';
-          } else {
-            errorMessage.textContent = 'Erro ao cadastrar: ' + error.message;
-          }
         });
-    }
-
-    // Redirecionar para a página de login
-    document.getElementById('login-btn').addEventListener('click', function() {
-      window.location.href = 'login.html'; // Redireciona para a página de login
-    });
-  </script>
+    </script>
 </body>
 </html>
