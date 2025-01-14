@@ -1,0 +1,13 @@
+{
+    "users": {
+      "user_uid_123": {
+        "email": "user@example.com",
+        "createdAt": "timestamp"
+      },
+      "user_uid_124": {
+        "email": "anotheruser@example.com",
+        "createdAt": "timestamp"
+      }
+    }
+  }
+  
