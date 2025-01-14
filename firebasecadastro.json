@@ -1,0 +1,13 @@
+{
+    "usuarios": {
+      "user1": {
+        "email": "exemplo@dominio.com",
+        "senha": "senha123"
+      },
+      "user2": {
+        "email": "outro@dominio.com",
+        "senha": "senha456"
+      }
+    }
+  }
+  
